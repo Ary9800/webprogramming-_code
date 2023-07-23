@@ -1,0 +1,166 @@
+<html>
+    <head>
+<script>
+    function validatename(){
+        var name=document.getElementById("name").value;
+if(name.trim()!=""){
+if(isNaN(name)){
+    document.getElementById("errn").innerHTML="";
+    return true;
+}
+else{
+    document.getElementById("errn").innerHTML="name cant contain number";
+    return false;
+}
+}
+else{
+    document.getElementById('errn').innerHTML='name cant be blanck'
+return false;
+}
+}
+function validateadd(){
+    var add=document.getElementById("address").value;
+    if(add.trim()!=""){
+        document.getElementById("erra").innerHTML="";
+        return true;
+    }
+    else{
+        document.getElementById('erra').innerHTML='address cant be blanck'
+return false;
+    }
+}
+function validatedob(){
+    var db=document.getElementById("dob").value
+   
+  if(db.trim()!=""){
+    var dob=new Date(db);
+    var today=new Date();
+    var tenYearsAgo=new  Date(today.getFullYear()-10,today.getMonth(),today.getDate())
+   
+    if(dob>tenYearsAgo)
+    {
+        document.getElementById("errdob").innerHTML="age must be greater than 10 yeaars";
+        return false;
+    }
+    else{
+        document.getElementById("errdob").innerHTML="";
+        return true;
+    }
+}
+else{
+    document.getElementById("errdob").innerHTML="date of birth is mandatory";
+        return false;
+}
+}
+function validatecon(){
+    var con=document.getElementById("con").value;
+if(con.trim()!=""){
+if(/^[0-9]+$/.test(con)){
+    document.getElementById("errc").innerHTML="";
+    return true;
+}
+else{
+    document.getElementById("errc").innerHTML="contact cant contain alphabet";
+    return false;
+}
+}
+else{
+    document.getElementById('errc').innerHTML='contact cant be blanck'
+return false;
+}
+}
+function validaterd(){
+    var radio=document.getElementsByName("gen")
+    var check=true
+    for(var i=0;i<radio.length;i++){
+        if(radio[i].checked){
+check=false;
+break;
+        }
+    }
+    if(check){
+        document.getElementById('errg').innerHTML='select gender';
+return false;  
+    }
+    else{
+        document.getElementById("errg").innerHTML="";
+        return true;
+    }
+}
+function validatecor(){
+    var cor=document.getElementById("cor").value;
+    if(cor!=""){
+        document.getElementById("errcor").innerHTML='';
+return true;
+    }
+    else{
+        document.getElementById("errcor").innerHTML="select course";
+        return false;
+    }
+}
+function validateform(){
+flag=validatename();
+flag1=validateadd();
+flag2=validatedob();
+flag3=validatecon();
+flag4=validaterd();
+flag5=validatecor();
+if (flag && flag1 && flag2 && flag3 && flag4 && flag5){
+    alert("registration successfull");
+return true;
+}
+else {
+    return false;
+}
+}
+</script>
+    </head>
+    <body>
+        <form action=# onsubmit="return validateform()">
+        <table >
+            <thead><tr>
+                STUDENT REGISTRATION
+            </tr>  </thead><br>
+            <tr>
+                <label for="name">name</label>
+                <input type="text" name="name" id="name">
+                <span id="errn"></span>
+            </tr><br>
+            <tr>
+                <label for="address">address</label>
+                <input type="text" name="address" id="address"> 
+                <span id="erra"></span>
+            </tr><br>
+            <tr>
+                <label for="dob">dob</label>
+                <input type="date" name="dob" id="dob">
+                <span id="errdob"></span>
+            </tr><br>
+            <tr>
+                <label for="con">Contactno</label>
+                <input type="text" name="con" id="con"> 
+                <span id="errc"></span>
+            
+            </tr><br>
+            <tr>
+            <label for="gen">Gender</label>
+            <input type="radio" name="gen" id="genm">Male
+            <input type="radio" name="gen" id="genf">Female
+            <span id="errg"></span>
+        </tr><br>
+        <tr>
+            <label for="cor">Course</label>
+            <select id="cor">
+                <option value="">select course</option>
+                <option value="bca">BCA</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                </select>
+                <span id="errcor"></span>
+        </tr><br>
+        <button type="submit" id="sub" value="Submit">Submit</button>
+        <input type="reset" id="res" value="reset">
+                </table>
+            </form>
+    </body>
+</html>
